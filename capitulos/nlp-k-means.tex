@@ -1,5 +1,10 @@
 \clearpage
-\section{Clusterização}
+\section{Aprendizado Não Supervisionado}
+
+Na aprendizagem não supervisionada, os dados de entrada não possuem classes (ou rótulos) e o objetivo do algoritmo é descrever estruturas dentro do conjunto de dados. Uma vez que os dados não são classificados, não existe um erro ou uma recompensa, o que distingue o aprendizado não supervisionado da aprendizagem supervisionada ou por esforço. A aprendizagem não supervisionada é bastante utilizada para resumir e explicar as principais características dos dados \cite{jordan2004}.
+
+
+\subsection{Clusterização}
 \label{sec:clusterização}
 
 Quando temos um conjunto de elementos, naturalmente tentamos estabelecer padrões entre eles. Uma forma natural de definir padrões em um conjunto é analisar a distância entre seus componentes. Dessa forma, quanto mais parecidos dois elementos são, mais próximos eles estão. A figura abaixo mostra um conjunto de elementos com duas características: forma (quadrado, círculo e triângulo) e cor (tons de vermelho, verde e azul). Ao lado temos os mesmos elementos agrupados em três conjuntos com características semelhantes. No grupo 1, por exemplo, todos os elementos possuem uma tonalidade de vermelho e o formato quadrado.
@@ -25,7 +30,7 @@ A clusterização é uma técnica da mineração de dados que consiste, justamen
 
 Não existe uma técnica de clusterização universal capaz de revelar toda a variedade de estruturas que podem estar presentes em conjuntos de dados multidimensionais. Diferentes algoritmos dependem implicitamente de certas hipóteses a respeito da forma dos clusters na definição da medida de similaridade e dos critérios de agrupamento \cite{estivill2002}.
 
-\subsection{Algorítmo \textit{k-means}}
+\subsubsection{Algorítmo \textit{k-means}}
 \label{sub:k_means}
 
 O algorítmo de clusterização \textit{k-means}, proposto por \citeonline{lloyd1957}, tem o objetivo de dividir \(N\) elementos em \(k\) grupos, onde cada elemento pertence ao \textit{cluster} mais próximo e \(k\) deve ser um valor informado a priori e menor ou igual à quantidade de elementos.

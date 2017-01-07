@@ -1,0 +1,19 @@
+\section{Validação Cruzada}
+
+A validação cruzada é uma técnica geralmente utilizada para avaliar modelos preditivos, buscando estimar o quão preciso é o modelo avaliado. A ideia principal da validação cruzada consiste em dividir o conjunto de dados em subconjuntos mutualmente exclusivos, onde alguns desses subconjuntos serão utilizados para a estimação dos parâmetros do modelo (treinamento) e os outros subconjuntos serão utilizados para a validação do modelo (validação ou teste) \cite{kohavi1995}.
+
+O método \textit{holdout} é uma forma de validação de cruzada comumente utilizada e consiste em dividir o conjunto de dados em dois subconjuntos mutualmente exclusivos, onde seus tamanhos podem, ou não, ser diferentes. Um subconjunto servirá para o treinamento do modelo e o outro para a sua validação. A proporção mais comum é considerar 2/3 dos dados para treinamento e 1/3 para a validação. Essa abordagem é indicada quando está disponível uma grande quantidade de dados, quando o conjunto de dados é muito pequeno, o erro calculado na predição pode sofrer muita variação \cite{kohavi1995}.
+
+Uma das métricas mais simples para avaliar o modelo é a comparação item a item dos resultados esperados pelos resultados obtidos:
+%
+\begin{align}
+P_{a}=\frac{N_{vp}}{N_{it}},
+\end{align}
+%
+onde:
+
+\begin{itemize}
+    \item \(P_{a}\) é a porcentagem de acertos do modelo,
+    \item \(N_{vp}\) é o número de itens classificados corretamente pelo modelo e
+    \item \(N_{it}\) é o número total de itens que fazem parte do conjunto de testes.
+\end{itemize}
