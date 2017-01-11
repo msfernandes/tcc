@@ -1,0 +1,63 @@
+\section{Obtenção dos Dados}
+
+Todos os dados utilizados para análise foram obtidos através do portal de dados abertos da Câmara dos Deputados\footnote{http://www.camara.leg.br/transparencia/dados-abertos}, que é dividido em duas partes: dados legislativos e dados referentes à cota parlamentar, que não foram utilizados nesse trabalho. Os dados legislativos estão relacionados à informações sobre deputados, órgãos legislativos, proposições, sessões plenárias e reuniões de comissões.
+
+\subsection{\textit{Webservice} da Câmara dos Deputados}
+
+Atualmente, o \textit{Webservice} da Câmara dos Deputados é estruturado de acordo com os padrões \textit{SOAP} (\textit{Simple Object Access Protocol}, em português Protocolo Simples de Acesso a Objetos), que se baseiam na linguagem de marcação \textit{XML} e utilizam, principalmente, chamada de procedimento remoto (\textit{RPC}) e protocolo de transferência de hipertexto (\textit{HTTP}) para a transmissão das mensagens \cite{soap2007}.
+
+No entanto, o \textit{webservice} possui alguns aspectos que podem ser melhorados: o uso de mais de um identificador para os deputados, como por exemplo no \textit{endpoint} \textbf{ObterDeputados}, que entre os atributos que são retornados, se encontram ``ideCadastro'' e ``idParlamentar''. Outro aspecto que pode ser melhorado é a forma de acesso a certos recursos, como obter todos os discursos de um deputado, por exemplo. Para isso, é necessário fazer uma requisição que retorna todas as sessões que tiveram discursos em um determinado período. Para cada ``sessão'', temos várias fases de sessão e para cada ``fase de sessão'', temos um conjunto de discursos. Uma vez com os dados do discurso (``código da sessão'', ``ordem'', ``quarto'' e ``numero de inserção''), podemos fazer uma requisição para outro \textit{endpoint} e ter acesso ao inteiro teor do discurso, no formato \textit{RTF} e codificado em \textit{base64}.
+
+No momento de escrita desse trabalho, se encontra em desenvolvimento uma nova versão do portal de dados abertos da Câmara dos Deputados, que está em fase de testes e já pode ser acessada pela sociedade\footnote{https://dadosabertos.camara.leg.br/}, porém ainda não possui os mesmos dados disponíveis na versão anterior. O novo \textit{webservice} segue os padrões REST e possibilita a escolha do formato de retorno, podendo ser em \textit{XML} ou em  \textit{JSON}. Além disso, visa corrigir os problemas encontrados na versão anterior (alguns mencionados no parágrafo acima), bem como aumentar a quantidade de dados disponíveis. Uma das promessas é disponibilizar o texto completo das proposições, que hoje só é disponível via \textit{PDF} e alguns são apenas imagens \textit{scaneadas} dos documentos físicos.
+
+
+\subsubsection{Estrutura do \textit{webservice}}
+
+O \textit{webservice} atual (\textit{SOAP}) possui um total de 28 \textit{endpoints}, onde 5 são relacionados aos deputados, 9 aos órgãos, 9 às proposições e 5 às sessões e reuniões. A seguir são descritos cada \textit{endpoint}.
+
+Os \textit{endpoints} que fornecem dados de deputados são:
+\begin{itemize}
+    \item \textbf{ObterDeputados:} retorna os deputados em exercício na Câmara dos Deputados
+    \item \textbf{ObterDetalhesDeputado:} retorna detalhes dos deputados com histórico de participação em comissões, períodos de exercício, filiações partidárias e lideranças.
+    \item \textbf{ObterLideresBancadas:} retorna os deputados líderes e vice-líderes em exercício das bancadas dos partidos
+    \item \textbf{ObterPartidosCD:} retorna os partidos com representação na Câmara dos Deputados
+    \item \textbf{ObterPartidosBlocoCD:} retorna os blocos parlamentares na Câmara dos Deputados.
+\end{itemize}
+
+Os \textit{endpoints} que fornecem dados de órgãos legislativos são:
+
+\begin{itemize}
+    \item \textbf{ListarCargosOrgaosLegislativosCD:} retorna a lista dos tipos de cargo para os órgãos legislativos da Câmara dos Deputados (ex: presidente, primeiro-secretário, etc)
+    \item \textbf{ListarTiposOrgaos:} retorna a lista dos tipos de órgãos que participam do processo legislativo na Câmara dos Deputados
+    \item \textbf{ObterAndamento:} retorna o andamento de uma proposição pelos órgãos internos da Câmara a partir de uma data específica
+    \item \textbf{ObterEmendasSubstitutivoRedacaoFinal:} retorna as emendas, substitutivos e redações finais de uma determinada proposição
+    \item \textbf{ObterIntegraComissoesRelator:} retorna os dados de relatores e pareces, e o link para a íntegra de uma determinada proposição
+    \item \textbf{ObterMembrosOrgao:} retorna os parlamentares membros de uma determinada comissão
+    \item \textbf{ObterOrgaos:} retorna a lista de órgãos legislativos da Câmara dos Deputados (comissões, Mesa Diretora, conselhos, etc.)
+    \item \textbf{ObterPauta:} retorna as pautas das reuniões de comissões e das sessões plenárias realizadas em um determinado período
+    \item \textbf{ObterRegimeTramitacaoDespacho:} retorna os dados do último despacho da proposição
+\end{itemize}
+
+Os \textit{endpoints} que fornecem dados de proposições são:
+
+\begin{itemize}
+    \item \textbf{ListarProposicoes:} retorna a lista de proposições que satisfaçam os critérios estabelecidos
+    \item \textbf{ListarSiglasTipoProposicao:} retorna a lista de siglas de proposições
+    \item \textbf{ListarSituacoesProposicao:} retorna a lista de situações para proposições
+    \item \textbf{ListarTiposAutores:} retorna a lista de tipos de autores das proposições
+    \item \textbf{ObterProposicao:} retorna os dados de uma determinada proposição a partir do tipo, número e ano
+    \item \textbf{ObterProposicaoPorID:} retorna os dados de uma determinada proposição a partir do seu ID
+    \item \textbf{ObterVotacaoProposicao:} retorna os votos dos deputados a uma determinada proposição em votações ocorridas no Plenário da Câmara dos Deputados
+    \item \textbf{ListarProposicoesVotadasEmPlenario:} retorna todas as proposições votadas em plenário num determinado período
+    \item \textbf{listarProposicoesTramitadasNoPeriodo:} retorna uma lista de proposições movimentadas em determinado período.
+\end{itemize}
+
+Os \textit{endpoints} que fornecem dados de sessões e reuniões são:
+
+\begin{itemize}
+    \item \textbf{ListarDiscursosPlenario:} retorna a lista dos deputados que proferiam discurso no Plenário da Cãmara dos Deputados em um determinado período.
+    \item \textbf{ListarPresencasDia:} retorna a lista de presença de deputado em um determinado dia.
+    \item \textbf{ListarPresencasParlamentar:} retorna as presenças de um deputado em um determinado período.
+    \item \textbf{ListarSituacoesReuniaoSessao:} retorna a lista de situações para as reuniões de comissão e sessões plenárias da Câmara dos Deputados
+    \item \textbf{ObterInteiroTeorDiscursosPlenario:} retorna o inteiro teor do discurso proferido no Plenário.
+\end{itemize}
