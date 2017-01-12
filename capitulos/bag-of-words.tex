@@ -1,0 +1,27 @@
+\section{Pré-processamento: modelo \textit{bag-of-words}}
+\label{sec:modelo_te}
+
+A grande parte dos dados que serão utilizados nesse trabalho estão dispostos em formato de texto, ou seja, um formato não estruturado que dificulta a extração de informações. Um método comum do processamento de texto em linguagem natural é o modelo \textit{bag-of-words}, onde o texto é representado na forma de um vetor de frequência de palavras que ocorrem no texto \cite{pretext}.
+
+A representação computacional de um texto no modelo mencionado é feita através de um dicionário onde suas chaves são os termos presentes no documento e os valores são suas respectivas frequências. Tomando o trecho ``fui à padaria e comprei pão'' como exemplo a sua representação no modelo \textit{bag-of-words} corresponde a:
+
+\begin{lstlisting}[language=Python, caption=Representação de um trecho  no modelo bag-of-words]
+bag_of_words = {
+    "fui": 1,
+    "à": 1,
+    "padaria": 1,
+    "e": 1,
+    "comprei": 1,
+    "pão": 1,
+}
+\end{lstlisting}
+
+É fácil ver que esta representação torna a ordem das palavras irrelevante. As frases ``e comprei fui padaria pão à'' e ``à pão comprei padaria e fui'' também possuem as mesmas representações.
+
+Um vetor também pode ser uma forma de representar um texto. Nesse caso, cada índice do vetor representa uma palavra e cada elemento corresponde à frequência da mesma.
+
+A linguagem de programação \textit{Python} possui, nativamente, ferramentas que facilitam a contagem de elementos de um dicionário. O \texttt{Counter} \footnote{https://docs.python.org/3/library/collections.html} é uma subclasse de \texttt{dict} e assim como a classe pai, é uma coleção não ordenada de elementos. Os elementos são armazenados como chaves de dicionário e seus contadores como valores, que podem assumir qualquer valor inteiro, incluindo zero e negativos. Isso torna o \texttt{Counter} uma representação ideal para o modelo \textit{bag-of-words}, já que ele, naturalmente, conta a quantidade de vezes que um termo aparece dentro de uma coleção (uma lista, tupla ou dicionário, por exemplo).
+
+\input{capitulos/representacao-termos.tex}
+\input{capitulos/ngram.tex}
+\input{capitulos/dimensionalidade.tex}

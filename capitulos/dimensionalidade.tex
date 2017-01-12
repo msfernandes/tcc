@@ -1,0 +1,45 @@
+\subsection{Dimensionalidade dos documentos}
+\label{sub:dimensionalidade_dos_documentos}
+
+A representação vetorial de uma coleção de documentos no modelo \textit{bag-of-words} pressupõe um espaço dimensional igual ao número de termos presentes em toda a coleção de documentos. Suponha que analisou-se 10 documentos e, em média, foram retirados 200 novos termos de cada um. Logo, a dimensionalidade média dos vetores serão de, aproximadamente, 2000. Se a maior parte dos termos aparecer em apenas um ou dois documentos, teremos a maior parte das componentes vetoriais nula. \cite{pretext}. Existem métodos cujo objetivo é diminuir a dimensionalidade desses vetores. Dentre eles, citamos a transformação de cada termo no radical de origem, utilizando algoritmos de \textit{stemming}.
+
+\subsubsection{Stemização}
+\label{ssub:stemização}
+
+A stemização (do inglês, \textit{stemming}) é o processo de reduzir palavras flexionadas à sua raiz, essa redução não precisa, necessariamente, chegar à raiz morfológica da palavra. A raiz obtidada geralmente é o suficiente para mapear palavras relacionadas à um valor comum, mesmo se este não for uma raiz válida. O estudo de algoritmos de \textit{stemming} é foco de pesquisas desde a década de 60 e o primeiro algoritmo foi publicado por \citeonline{lovins1968}.
+
+A consequência da aplicação de algoritmos de \textit{stemming} consiste na remoção de prefixos ou sufixos de um termo e ou da transformação de verbos para suas formas no infinitivo. Por exemplo, as palavras \textbf{ouvir}, \textbf{ouvi}, \textbf{ouviriam}, \textbf{ouve} e \textbf{ouvindo} seriam reduzidas para um mesmo \textit{stem}: \textbf{ouv}. Esse método diminui, portanto, a dimensionalidade dos vetores e dicionários dentro de uma \textit{bag-of-words}. Ao invés de analizar a frequência dos termos, analisamos a quantidade de vezes que um \textit{stem} aparece em um documento.
+
+É evidente que os algoritmos de \textit{stemming} são dependentes do idioma analisado. O algoritmo de \citeonline{porter1980}, um dos algoritmos de \textit{stemming} mais conhecidos, remove os sufixos de termos em inglês, tem sido amplamente utilizado, referenciado e adaptado desde sua criação. É possível adaptá-lo para a língua portuguesa considerando que as línguas provenientes do latim possuem formas verbais conjugadas em sete tempos e com sete terminações distintas.
+
+Devido ao fato de uma linguagem ter tantas regras e exceções, é pouco provavél que o algoritmo de \textit{stemming} retorne o mesmo \textit{stem} para todas as palavras que tenham a mesma origem ou radical morfológico. Pode-se dizer, também, que a medida que o algoritmo vai se tornando específico o suficiente para atender todas essas regras e exceções a eficiência do algoritmo também diminui \cite{imamura2001}.
+
+\subsubsection{\textit{Stop Words}}
+\label{ssub:stop_words}
+
+Palavras que possuem pouco ou nenhum valor semântico, como \textit{"e"}, \textit{"de"} e \textit{"seus"}, são conhecidas como \textit{Stop Words} e, por não agregarem valor à analise textual, são removidas durante o pré-processamento \cite{rajaraman2011}. Essas palavras não são exclusividade de uma linguagem específica e geralmente representam a maioria dos termos de um texto. No caso da língua inglesa, por exemplo, palavras como \textit{"of"} e \textit{"the"} também não possuem nenhum valor para a análise. A lista de \textit{Stop Words} obviamente varia de acordo com a linguagem que está sendo analisada \cite{lopes2015}. O quadro abaixo mostra a lista de \textit{Stop Words} consideradas neste trabalho.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cccccccc}
+\cline{1-8}
+de & os & tua & tem & estão & da & lhes & essas \\
+e & é & foi & nossas & muito & o & se & tuas \\
+tu & por & as & sua & aquele & entre & não & ele \\
+delas & minhas & às & nos & pela & havia & me & como \\
+ser & aqueles & nossa & vocês & eu & ter & tenho & suas \\
+está & isso & pelos & estes & tinha & depois & foram & este \\
+para & só & quem & deles & isto & um & eles & do \\
+vos & mais & mesmo & num & dele & será & minha & a \\
+no & teus & à & você & em & meus & esses & pelas \\
+com & ao & dela & há & que & na & nosso & te \\
+aos & dos & ou & aquela & era & uma & das & esta \\
+teu & nem & já & até & seja & esse & mas & quando \\
+aquelas & nossos & têm & também & seus & lhe & meu & seu \\
+ela & elas & estas & nós & sem & essa & fosse & qual \\
+& & pelo & nas & numa & aquilo & & \\
+\cline{1-8}
+\end{tabular}
+\caption{Exemplos de \textit{Stop Words}}
+\label{exemplos-stop-words}
+\end{table}

@@ -1,0 +1,39 @@
+\subsection{Representação dos Termos}
+\label{sec:representação_dos_termos}
+
+A representação de um termo \(a_i\) pode se dar de diferentes maneiras, como a quantidade de vezes que o termo aparece em um texto ou apenas se o termo aparece no texto, por exemplo. Alguns dos tipos de representação serão expostos a seguir.
+
+\subsubsection{\textit{Boolean}}
+\label{ssub:bag-boolean}
+
+Essa medida usa a representação binária para os termos presentes nos documentos, onde o valor de \(a_{i}\) é 0 quando o termo não aparece nenhuma vez no documento ou 1 quando aparece uma ou mais vezes. Essa medida é muito simples e, geralmente, modelos estatísticos levam em consideração também a frequência com que os termos se repetem nos documentos \cite{buckley1988}.
+
+\subsubsection{\textit{Term Frequency}}
+\label{ssub:baf-tf}
+
+Ao contrário da medida mencionada anteriormente, a medida \textit{term frequency} considera a quantidade de ocorrencias do termo \(t\) dentro do documento
+%
+\begin{equation}
+f_t=\frac{n_t}{N},
+\end{equation}
+%
+onde \(n_t\) é a quantidade de vezes que o termo \(t\) aparece dentro do documento e \(N\) a quantidade total de termos do documento.
+
+Alguns termos comuns podem aparecer na maioria dos documentos sem fornecer informações úteis em uma tarefa de mineração de textos \cite{pretext}.
+
+\subsubsection{\textit{Term Frequency - Inverse Document Frequency}}
+\label{ssub:baf-tfidf}
+
+Para diminuir a influência de termos comuns, é possível utilizar um fator de ponderação, para que os termos que aparecem na maioria dos documentos tenham valores numéricos menores do que aqueles que raramente aparecem \cite{pretext}. Segundo \citeonline{jones1972}, a especificidade de um termo pode ser quantificada por uma função inversa do número de documentos em que ele ocorre, essa função varia entre \(0\) e \(log N_d\), onde \(N_d\) é o número total de documentos e \(d(t)\) a quantidade de documentos nos quais o termo \(t\) aparece ao menos uma vez:
+%
+\begin{equation}
+i(t)=log \frac{N_d}{d(t)}
+\end{equation}
+%
+Portanto, o valor final de \(a_{i}\) é dado pela equação:
+%
+\begin{equation}
+f(t)=\frac{n_t}{N} \cdot log \frac{N_d}{d(t)},
+\end{equation}
+%
+onde \(\frac{n_t}{N}\) é a frequência do termo dentro do texto e \(log \frac{N_d}{d(t)}\) sua taxa de ponderação.

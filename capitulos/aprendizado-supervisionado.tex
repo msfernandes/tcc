@@ -1,27 +1,14 @@
-\chapter{Aprendizado de Máquina}
-
-Como subárea da inteligência artificial, o aprendizado de máquina tem como objetivo criar técnicas computacionais e sistemas que automaticamente adquirem conhecimento. Existem diversos algoritmos de aprendizado de máquina, utilizados para resolver problemas específicos, portanto, é importante compreender suas limitações \cite{rezende2003}.
-
-As tarefas de aprendizado de máquina podem ser classificadas em três categorias \cite{russel2003}:
-
-\begin{itemize}
-    \item \textbf{Apredizagem supervisionada:} é fornecido ao algoritmo um conjunto de entradas e suas respectivas saídas, com o objetivo de aprender uma regra geral que mapeia as entradas às saídas.
-    \item \textbf{Aprendizagem não-supervisionada:} nenhum tipo de entrada é fornecido, com o objetivo do próprio algoritmo identificar os padrões do conjunto de dados.
-    \item \textbf{Aprendizagem por reforço:} o algoritmo interage com o ambiente dinâmico afim de concluir determinados objetivos.
-\end{itemize}
-
-
-\section{Aprendizagem Supervisionada}
+\subsection{Aprendizagem Supervisionada}
 
 Na aprendizagem supervisionada, cada exemplo de treinamento é descrito por um conjunto de atributos que servem como dados de entrada e são associados a um valor de saída. A partir de um conjunto pré-definido de entradas e saídas, o algoritmo consegue gerar uma saída adequada para uma nova entrada. A aprendizagem supervisionada é a principal técnica utilizada para casos de classificação \cite{mohri2012}.
 
-\subsection{Aprendizado Bayesiano}
+\subsubsection{Aprendizado Bayesiano}
 
 O aprendizado Bayesiano é do tipo supervisionado, já que recebe como \textit{input} dados iniciais e seus respectivos rótulos (ou classes). O algoritmo utiliza fórmulas estatísticas e cálculos de probabilidades para realizar a classificação \cite{mitchell1997}.
 
 As principais vantagens do aprendizado bayesiano são: o fato de se poder embutir nas probabilidades calculadas o conhecimento de domínio que se tem (caso se tenha) e a capacidade das classificações feitas pelo algoritmo se basearem em evidências fornecidas. Por outro lado, muitas probabilidades devem ser calculadas, o que pode ocasionar em um alto custo computacional. Uma das soluções para o custo do cálculo das probabilidades é o uso do classificador bayes ingênuo \cite{pardo2002}.
 
-\subsubsection{Classificador \textit{naive bayes}}
+\paragraph{Classificador \textit{naive bayes}}
 
 O classificador bayesiano, também chamado de bayes ingênuo (ou \textit{naive bayes}, em inglês), admite que os atributos do elemento a ser classificado são independentes entre si, mesmo que eles possuam tal dependência \cite{pellucci2011}.
 
