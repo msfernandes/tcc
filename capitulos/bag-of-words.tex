@@ -1,9 +1,9 @@
-\section{Pré-processamento: modelo \textit{bag-of-words}}
+\section{Pré-processamento: modelo \textit{bag-of-words} (BOW)}
 \label{sec:modelo_te}
 
-A grande parte dos dados que serão utilizados nesse trabalho estão dispostos em formato de texto, ou seja, um formato não estruturado que dificulta a extração de informações. Um método comum do processamento de texto em linguagem natural é o modelo \textit{bag-of-words}, onde o texto é representado na forma de um vetor de frequência de palavras que ocorrem no texto \cite{pretext}.
+A maior parte dos dados utilizados nesse trabalho estão dispostos em formato de texto, ou seja, um formato não estruturado que dificulta a extração de informações. Um método comum do processamento de texto em linguagem natural é o modelo \textit{bag-of-words}, onde o texto é representado na forma de um vetor de frequência de palavras \cite{pretext}.
 
-A representação computacional de um texto no modelo mencionado é feita através de um dicionário onde suas chaves são os termos presentes no documento e os valores são suas respectivas frequências. Tomando o trecho ``fui à padaria e comprei pão'' como exemplo a sua representação no modelo \textit{bag-of-words} corresponde a:
+A representação computacional de um texto no modelo mencionado é feita através de um dicionário onde suas chaves são os termos presentes no documento e os valores são as respectivas frequências. Tomando o trecho ``fui à padaria e comprei pão'' como exemplo, sua representação no modelo \textit{bag-of-words} corresponderia a:
 
 \begin{lstlisting}[language=Python, caption=Representação de um trecho  no modelo bag-of-words]
 bag_of_words = {
@@ -18,9 +18,9 @@ bag_of_words = {
 
 É fácil ver que esta representação torna a ordem das palavras irrelevante. As frases ``e comprei fui padaria pão à'' e ``à pão comprei padaria e fui'' também possuem as mesmas representações.
 
-Um vetor também pode ser uma forma de representar um texto. Nesse caso, cada índice do vetor representa uma palavra e cada elemento corresponde à frequência da mesma.
+O texto também pode ser representado na forma de um vetor. Nesse caso, cada índice do vetor representa uma palavra e cada coordenada corresponde à frequência da mesma. Quando mais de um texto é analisado, os vetores que os representam devem possuir a mesma relação ``índice-palavra''. Por isso, as palavras que compõe cada texto são ordenadas alfbéticamente antes da formação do vetores.
 
-A linguagem de programação \textit{Python} possui, nativamente, ferramentas que facilitam a contagem de elementos de um dicionário. O \texttt{Counter} \footnote{https://docs.python.org/3/library/collections.html} é uma subclasse de \texttt{dict} e assim como a classe pai, é uma coleção não ordenada de elementos. Os elementos são armazenados como chaves de dicionário e seus contadores como valores, que podem assumir qualquer valor inteiro, incluindo zero e negativos. Isso torna o \texttt{Counter} uma representação ideal para o modelo \textit{bag-of-words}, já que ele, naturalmente, conta a quantidade de vezes que um termo aparece dentro de uma coleção (uma lista, tupla ou dicionário, por exemplo).
+A linguagem de programação \textit{Python} possui, nativamente, ferramentas que facilitam a contagem de elementos de um dicionário. O módulo \texttt{collections}\footnote{https://docs.python.org/3/library/collections.html} possui a classe \texttt{Counter}, que é uma subclasse de \texttt{dict} e representa um mapa entre elementos e números. Isso torna o \texttt{Counter} uma representação ideal para o modelo \textit{bag-of-words}, já que ele, naturalmente, conta a quantidade de vezes que um termo aparece dentro de uma coleção (uma lista, tupla ou dicionário, por exemplo).
 
 \input{capitulos/representacao-termos.tex}
 \input{capitulos/ngram.tex}
