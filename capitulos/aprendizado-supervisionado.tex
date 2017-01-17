@@ -36,7 +36,7 @@ Para calcular a classe mais provável da nova instância, calcula-se as probabil
 Considerando que \(A= ( a_1, a_2, \ldots , a_n)\), onde \(a_n\) são os atributos que compõe \(A\), a suposição ``ingênua'' que o classificador faz é que todos os atributos de \(A\) são independentes entre si, o que simplifica o cálculo da probabilidade de \(P(A|classe)\), podendo ser reduzida a \(P(a_1|classe) \times P(a_2|classe) \times\ \ldots \times P(a_n|classe)\). Logo,
 %
 \begin{align}
-P(classe|A) = P(classe) \times \prod_{i=1}^{n} P(a_i|classe)
+P(classe|A) \propto P(classe) \times \prod_{i=1}^{n} P(a_i|classe)
 \end{align}
 
 Em problemas de NLP, \(a_i\) usualmente correspondem aos valores contidos em uma BOW, ainda que seja possível adicionar outros tipos de atributos para a análise.

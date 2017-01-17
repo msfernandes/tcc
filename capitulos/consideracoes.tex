@@ -1,0 +1,35 @@
+\chapter{Considerações Finais}
+
+Durante o desenvolvimento desse trabalho, alguns resultados foram obtidos. Primeiramente, o autor estabeleceu um bom conhecimento sobre processamento de linguagem natural, incluindo técnicas de pré-processamento e aprendizado de máquina, o que possibilitou a aplicação desses conceitos no desenvolvimento das aplicações propostas nesse trabalho.
+
+Para as contribuições tecnológicas, foi construída uma versão inicial da biblioteca \textit{pygov-br}, que facilita o consumo do \textit{webservice} da Câmara dos Deputados em aplicações \textit{Python}, assim como a persistência dessas informações em banco dados, através da aplicação \textit{Django} que faz parte da \textit{pygov-br}. Iniciou-se o desenvolvimento da aplicação \textit{web}, com a implementação dos algoritmos de classificação de conteúdo útil/não-útil e classificação temática. Entretanto, para a parte \textit{web} propriamente dita, responsável pela visualização dos dados processados, foram apenas desenvolvidos os protótipos iniciais das telas do sistema.
+
+\section{Perspectivas Futuras}
+
+Para melhorar a classificação de parágrafos que abordam mais de um tema simultaneamente, investigaremos o modelo \textit{Latent Dirichlet Allocation}, já que o mesmo considera que texto é gerado por uma mistura de temas, invés de pertencer a uma única categoria.
+
+Além dos discursos, a análise temática dos deputados será realizada com os textos das proposições, que serão obtidos através da nova API de dados abertos da Câmara dos Deputados. Segundo o departamento de tecnologia da Casa, a disponibilização dos dados de proposições deverá ocorrer até março de 2017. Com isso, a biblioteca \textit{pygov-br} também deverá ser atualizada para a utilização da nova API.
+
+O desenvolvimento da aplicação ``Tenho Dito'' também deverá ser realizada e implantada, permitindo que toda a sociedade tenha acesso aos dados obtidos ao final das análises realizadas nesse trabalho, de forma lúdica e amigável.
+
+Para fins de auditoria do processamento, será realizada a validação cruzada dos algoritmos de aprendizagem de máquina.
+
+\clearpage
+\section{Cronograma}
+
+Tendo em vista as perspectivas futuras, o cronograma apresenta as atividades a serem realizadas e suas respectivas datas.
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Atividade}} & \multicolumn{1}{c|}{\textbf{Março}} & \multicolumn{1}{c|}{\textbf{Abril}} & \multicolumn{1}{c|}{\textbf{Maio}} & \multicolumn{1}{c|}{\textbf{Junho}} \\ \hline
+Utilizar \(n\)-gramas & X &  &  &  \\ \hline
+Integração do modelo LDA da sklearn & X & X &  &  \\ \hline
+Atualização da \textit{pygov-br} &  & X  &  &  \\ \hline
+Implementação do Tenho Dito &  & X & X  &  \\ \hline
+Validação &  &  & X  &  \\ \hline
+Escrita do trabalho &  & X & X & X \\ \hline
+\end{tabular}
+\caption{Cronograma TCC2}
+\label{my-label}
+\end{table}
