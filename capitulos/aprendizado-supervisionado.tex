@@ -1,20 +1,24 @@
-\subsection{Aprendizagem Supervisionada}
+\section{Aprendizado Supervisionado}
 
-Na aprendizagem supervisionada, cada exemplo de treinamento é descrito por um conjunto de atributos que servem como dados de entrada e são associados a um valor de saída. A partir de um conjunto pré-definido de entradas e saídas, o algoritmo consegue gerar uma saída adequada para uma nova entrada. A aprendizagem supervisionada é a principal técnica utilizada para problemas de classificação \cite{mohri2012}.
+No aprendizado supervisionado, cada exemplo de treinamento é descrito por um conjunto de atributos que servem como dados de entrada e são associados a um valor de saída. A partir de um conjunto pré-definido de entradas e saídas, o algoritmo consegue gerar uma saída adequada para uma nova entrada. O aprendizado supervisionado é a principal técnica utilizada para problemas de classificação e regressão \cite{mohri2012}.
 
-\subsubsection{Aprendizado Bayesiano}
+\subsection{Aprendizado Bayesiano}
 
-O aprendizado Bayesiano é um conjunto de técnicas baseadas em análise estatística que utilizam a fórmula de Bayes. Normalmente são métodos supervisionados, ainda que alguns algoritmos não-supervisionados possam ser mapeados em métodos bayesianos \cite{mitchell1997}.
+O aprendizado Bayesiano é um conjunto de técnicas baseadas em análise estatística que utilizam a fórmula de Bayes. Normalmente são métodos supervisionados, ainda que alguns algoritmos não-supervisionados possam ser mapeados em métodos Bayesianos \cite{mitchell1997}.
 
-As principais vantagens do aprendizado bayesiano são o fato de se poder embutir nas probabilidades calculadas o conhecimento de domínio (caso se tenha) e a capacidade das classificações feitas pelo algoritmo se basearem em evidências fornecidas e numa análise estatística bem fundamentada. Por outro lado, frequentemente envolvem o cálculo de médias e outras medidas estatísticas que pode ocasionar em um alto custo computacional.
+As principais vantagens do aprendizado Bayesiano são o fato de se poder embutir nas probabilidades calculadas o conhecimento de domínio (caso se tenha) e a capacidade das classificações feitas pelo algoritmo se basearem em evidências fornecidas e numa análise estatística bem fundamentada. Por outro lado, frequentemente envolvem o cálculo de médias e outras medidas estatísticas que pode ocasionar em um alto custo computacional.
 
-\paragraph{Classificador \textit{naive bayes}}
+\subsubsection{Classificador \textit{naive Bayes}}
 
 Uma forma de mitigar a dificuldade de cálculo está em considerar modelos probabilísticos simplificados que permitem um tratamento analítico para as probabilidades calculadas \cite{pardo2002}.
 
-O classificador bayesiano ingênuo (ou \textit{naive bayes}, em inglês), admite que os atributos do elemento a ser classificado são independentes entre si, dada a categoria da classificação \cite{pellucci2011}.
+O classificador Bayesiano ingênuo (ou \textit{naive Bayes}, em inglês), admite que os atributos do elemento a ser classificado são independentes entre si, dada a categoria da classificação \cite{pellucci2011}. Segundo \citeonline{oguri2007}, existem dois tipos principais de classificadores bayesianos ingênuos utilizados em processamento de linguagem natural: o modelo binário e o modelo multinomial. Cada modelo está relacionado a um tipo de BOW. Também é possível tratar a BOW TF-IDF como um modelo Gaussiano adequado para variáveis contínuas \cite{hand2001}.
 
-Segundo \citeonline{oguri2007}, existem dois tipos principais de classificadores bayesianos ingênuos utilizados em processamento de linguagem natural: o modelo binário e o modelo multinomial. O modelo binário representa um documento como um vetor binário, ou seja, o valor 0 em uma posição \(k\) (onde \(k\) representa uma palavra do documento) representa a não ocorrência do termo e o valor 1 representa ao menos uma ocorrência desse termo. Este modelo simplesmente especifica a probabilidade de ocorrência de cada termo. Já o modelo multinomial assume que o documento é representado por um vetor de inteiros, representando a quantidade de vezes que um termo ocorre no documento. Este modelo também especifica a probabilidade de ocorrência de um termo, mas permite ocorrências múltiplas. Cada modelo está relacionado a um tipo de BOW. Também é possível tratar a BOW TF-IDF como um modelo Gaussiano adequado para variáveis contínuas \cite{hand2001}.
+\paragraph{Modelo Binário}
+O modelo binário representa um documento como um vetor binário, ou seja, o valor 0 em uma posição \(k\) (onde \(k\) representa uma palavra do documento) representa a não ocorrência do termo e o valor 1 representa ao menos uma ocorrência desse termo. Este modelo simplesmente especifica a probabilidade de ocorrência de cada termo.
+
+\paragraph{Modelo Multinomial}
+Já o modelo multinomial assume que o documento é representado por um vetor de inteiros, representando a quantidade de vezes que um termo ocorre no documento. Este modelo também especifica a probabilidade de ocorrência de um termo, mas permite ocorrências múltiplas.
 
 Os classificadores Bayesianos são baseados na aplicação do Teorema de Bayes:
 %
@@ -31,7 +35,7 @@ onde:
     \item \(P(A)\) é a probabilidade da nova instância a ser classificada. Este termo corresponde ao fator de normalização do posterior e é frequentemente ignorado. Na literatura Bayesiana é conhecido como evidência \cite{jaynes2003}
 \end{itemize}
 
-Para calcular a classe mais provável da nova instância, calcula-se as probabilidades de todas as classes possíveis e escolhe-se a classe com maior probabilidade. Em termos estatísticos, isso é equivalente a maximizar \(P(classe|A)\). Como o \textit{prior} é comumente pré-fixado e a evidência não depende da classe, o problema matemático principal consiste em encontrar o valor de máxima verossimilhança.
+Para calcular a classe mais provável da nova instância, calcula-se as probabilidades de todas as classes possíveis e escolhe-se a classe com maior probabilidade. Em termos estatísticos, isso é equivalente a maximizar \(P(classe|A)\). Como muitas vezes utiliza-se um prior uniforme ao longo das classes, o problema matemático principal ferquentemente consiste em encontrar o valor de máxima verossimilhança.
 
 Considerando que \(A= ( a_1, a_2, \ldots , a_n)\), onde \(a_n\) são os atributos que compõe \(A\), a suposição ``ingênua'' que o classificador faz é que todos os atributos de \(A\) são independentes entre si, o que simplifica o cálculo da probabilidade de \(P(A|classe)\), podendo ser reduzida a \(P(a_1|classe) \times P(a_2|classe) \times\ \ldots \times P(a_n|classe)\). Logo,
 %

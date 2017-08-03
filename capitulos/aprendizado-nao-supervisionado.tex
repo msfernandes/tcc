@@ -1,10 +1,10 @@
 \clearpage
-\subsection{Aprendizado Não Supervisionado}
+\section{Aprendizado Não Supervisionado}
 
 Na aprendizagem não supervisionada, os dados de entrada não possuem classes (ou rótulos) e o objetivo do algoritmo é descrever estruturas dentro do conjunto de dados. Uma vez que os dados não são classificados, não existe um erro ou uma recompensa, o que distingue o aprendizado não supervisionado da aprendizagem supervisionada ou por esforço. A aprendizagem não supervisionada é bastante utilizada para resumir e explicar as principais características dos dados \cite{jordan2004}.
 
 
-\subsubsection{Clusterização}
+\subsection{Clusterização}
 \label{sec:clusterização}
 
 Quando temos um conjunto grande de elementos, naturalmente tentamos estabelecer padrões entre eles. Uma forma natural de definir padrões em um conjunto é analisar a distância entre seus componentes. Dessa forma, quanto mais parecidos dois elementos são, mais próximos eles estão. A figura abaixo mostra um conjunto de elementos com duas características: forma (quadrado, círculo e triângulo) e cor (tons de vermelho, verde e azul). Ao lado temos os mesmos elementos agrupados em três conjuntos com características semelhantes. No grupo 1, por exemplo, todos os elementos possuem uma tonalidade de vermelho e o formato quadrado.
@@ -30,7 +30,7 @@ A clusterização é uma técnica da mineração de dados que consiste, justamen
 
 Não existe uma técnica de clusterização universal capaz de revelar toda a variedade de estruturas que podem estar presentes em conjuntos de dados multidimensionais. Diferentes algoritmos dependem implicitamente de certas hipóteses a respeito da forma dos clusters, da definição da medida de similaridade e dos critérios de agrupamento \cite{estivill2002}.
 
-\paragraph{Algorítmo \textit{k-means}}
+\subsubsection{Algorítmo \textit{k-means}}
 \label{sub:k_means}
 
 O algorítmo de clusterização \textit{k-means}, proposto por \citeonline{lloyd1957}, tem o objetivo de dividir \(N\) elementos em \(k\) grupos, onde cada elemento pertence ao \textit{cluster} mais próximo. O valor de \(k\) deve ser informado a priori, sendo menor que a quantidade de elementos.
@@ -51,7 +51,7 @@ Os passos do algoritmo são:
     \includegraphics[scale=0.6]{figuras/kmeans-2.eps}
     \caption{Cálculo das distâncias entre os pontos e os centróides.}
   \end{figure}
-  \item \textbf{Calcular novos centróides:} para cada \textit{cluster}, um novo centróide é definido como a média desses pontos.
+  \item \textbf{Calcular novos centróides:} para cada \textit{cluster}, um novo centróide é definido como a média de todos os pontos.
   \begin{figure}[h]
     \centering
     \includegraphics[scale=0.6]{figuras/kmeans-3.eps}
@@ -68,47 +68,60 @@ Os passos do algoritmo são:
 Mudanças de escala ou de unidade de medidas para determinadas coordenadas dos elementos podem afetar a análise \cite{cole1998}. Sugere-se, então, que seja feito o processo de normalização (\textit{whitening}) dos dados antes da clusterização. A normalização consiste em ajustar a escala das distâncias de forma que os valores fiquem em intervalos padronizados, normalmente com média nula e variância 1.
 
 
-\paragraph{Distância entre os pontos}
-\label{ssub:distância_entre_os_pontos}
+\subsubsection{\textit{Latent Dirichlet Allocation - LDA}}
 
-Segundo \citeonline{cole1998}, para clusterizar termos de acordo com sua similaridade, deve-se definir uma medida de quão próximos dois termos estão. Uma medida de distância (métrica) deve ser definida de tal forma que:
+O \textit{LDA} foi proposto por \citeonline{pritchard} em uma aplicação inicial na biologia. Em seu modelo, \citeonline{pritchard} utilizam dados de genótipos multilocus para inferir estruturas populacionais e associar cada indivíduos a uma mistura de populações parentais. Dessa forma, também conseguem estudar zonas híbridas entre as populações e identificar indivíduos migrantes e misturados. A aplicação desse modelo no processamento de linguagem natural foi proposta independentemente por \citeonline{blei}, onde os documentos são tratados como os indivíduos e as populações passam a ser tópicos.
 
-\begin{itemize}
-  \item Seja sempre positiva.
-  \item Seja simétrica: a distância de um termo \(A_{i}\) para um termo \(A_{j}\) deve ser a mesma de \(A_{j}\) para \(A_{i}\).
-  \item Seja reflexiva: se a distância entre \(A_{i}\) e \(A_{j}\) é zero, então \(A_{i} = A_{j}\).
-  \item Respeite a desigualdade triangular: considerando os termos (\(A_{i}, A_{j}\) e \(A_k\)), a distância \(d(A_{i}, A_k)\) deve ser menor ou igual à soma das distâncias \(d(A_{i}, A_{j})\) e \(d(A_{j}, A_k)\)
-\end{itemize}
+No contexto do processamento de linguagem natural, um documento, ou palavra, pode ser representado por uma mistura de vários tópicos, o que permite uma melhor desambiguação dos termos e uma definição de tópicos mais precisa \cite{girolami}. Usamos como exemplo as seguintes frases:
 
-Existem várias medidas de distância. Começamos pela distância euclidiana entre dois pontos, \(A=(a_1, a_2, a_3, \ldots, a_n) \) e \(B=(b_1, b_2, b_3, \ldots, b_n) \), dada pela equação
-%
-\begin{align}
-  dist(A, B) &= \sqrt{(a_1-b_1)^2+(a_2-b_2)^2+(a_3-b_3)^2+\ldots+(a_n-b_n)^2} \\
-  dist(A, B) &= \sqrt{\displaystyle\sum_{i=1}^{n} (a_i-b_i)^2} \label{eq:euclidean}
-\end{align}
+\begin{enumerate}
+  \item Eu \textbf{como peixe}.
+  \item \textit{Peixes} são \textit{animais}.
+  \item Meu \textit{gato} \textbf{come peixe}.
+\end{enumerate}
 
-Já a distância de Manhattan entre dois pontos, \(A=(a_1, a_2, a_3, \ldots, a_n) \) e \(B=(b_1, b_2, b_3, \ldots, b_n) \), é dada pela soma das diferenças absolutas de suas coordenadas:
+O \textit{LDA} poderia classificar os termos em \textbf{negrito} como pertencentes ao \textbf{Tópico C}, que poderia ser rotulado como ``\textbf{comida}''. Da mesma forma, as palavras em \textit{itálico} também poderiam ser agrupadas em um \textit{Tópico A}, rotulado como ``\textit{animais}''.
 
-\begin{align}
-  dist(A, B) &= |a_1-b_1|+|a_2-b_2|+|a_3-b_3|+\ldots+|a_n-b_n| \\
-  dist(A, B) &= \displaystyle\sum_{i=1}^{n} |a_i-b_i| \label{eq:manhattan}
-\end{align}
+Esse modelo tenta inferir duas tabelas de probabilidade: estrutura (\(P\)) e mistura (\(Q\)). Em \(P\) temos as probabilidades de um termo estar presente em uma frase de cada tópico, sendo que essas probabilidades são independentes entre si. Já em \(Q\), temos as probabilidades de cada documento pertencer à cada tópico, mas, nesse caso, as probabilidades devem somar um total de 100\%. Foram utilizados dados hipotéticos nas tabelas abaixo apenas para ajudar na explicação.
 
-Em ambos os casos, temos que a distância entre do ponto A ao ponto B é a mesma distância do ponto B ao ponto A.
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Termo/Tópico} & \textbf{Comida} & \textbf{Animal} \\ \hline
+comer & 0.9 & 0.3 \\ \hline
+peixe & 0.5 & 0.6 \\ \hline
+animal & 0.2 & 0.8 \\ \hline
+gato & 0.2 & 0.8 \\ \hline
+\end{tabular}
+\caption{Tabela de Estrutura dos Termos (P)}
+\label{tabelap}
+\end{table}
 
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.5]{figuras/euclidean.eps}
-    \caption{Distância Euclidiana}
-  \end{subfigure}%
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.5]{figuras/manhattan.eps}
-    \caption{Distância de Manhattan}
-  \end{subfigure}
-  \caption{Comparação entre distância euclidiana e de manhattan}
-\end{figure}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Documento/Tópico} & \textbf{Comida} & \textbf{Animal} \\ \hline
+Frase 1 & 0.8 & 0.2 \\ \hline
+Frase 2 & 0.1 & 0.9 \\ \hline
+Frase 3 & 0.6 & 0.4 \\ \hline
+\end{tabular}
+\caption{Tabela de Mistura dos Documentos (Q)}
+\label{tabelaq}
+\end{table}
 
-Cada métrica pode gerar resultados diferentes no algoritmo \textit{k-means} e normalmente podem ser interpretadas do ponto de vista estatístico como uma escolha do modelo que gerou cada \textit{cluster}. A distância euclidiana pode ser associada a um modelo Gaussiano para gerar os pontos observados onde a média corresponde ao centróide de cada \textit{cluster} e o desvio padrão é o mesmo para todos os grupos.
+Essas tabelas influenciam diretamente uma à outra, ou seja, se um termo começa a ser predominante em determinado tópico, o documento a qual ele pertence passa a tender à esse tópico. Da mesma forma que se um documento começar a tender a um tópico, seus termos também serão favorecidos neste tópico.
+
+Para se obter o conteúdo de cada tópico, basta observar as colunas de \(P\), onde teremos uma \textit{bag of words} contendo a probabilidade de todos os termos pertencerem à esse tópico. Analisando as linhas de \(Q\), temos as misturas de tópicos de cada documento. Vale notar que, por ser uma mistura de tópicos, o \textit{LDA} dificilmente vai atribuir um documento à um único tópico com 100\% de pertencimento.
+
+Para chegar à essa conclusão, o \textit{LDA} segue três passos:
+
+\paragraph{Quantidade de Tópicos}
+Assim como no \textit{k-means}, o primeiro passo é definir a quantidade de tópicos que serão obtidos ao final da análise. Esse número pode ser obtido através de uma análise prévia dos dados ou simplesmente por uma escolha aleatória.
+
+\paragraph{Inicializar as tabelas \(P\) e\(Q\)}
+É definida uma distribuição de tópico inicial para cada documento, que será atualizado no passo seguinte. A escolha desses tópicos se dá de forma semi-aleatória, de acordo com a distribuição de \textit{Dirichlet}, ou seja, valores aleatórios entre 0 e 1 com a restrição de que a soma deles deve ser 1. As probabilidades \(P\) podem ser definidas de forma uniforme para todos os termos: \(P=0.5\).
+
+\paragraph{Analisar e Atualizar os Tópicos}
+Para cada palavra, em todos os documentos, a definição do tópico é atualizada de acordo com dois critérios: quão essa palavra é predominante  entre os tópicos e quão predominante são os tópicos entre as palavras do documento. Em outras palavras, as probabilidades são recalculadas fixando os valores de \(P\) para obter os novos valores de \(Q\) e, em seguida, fixa-se os valores de \(Q\) para recalcular as probabilidades de \(P\). Dependendo do algoritmo esse processo pode ser repetido para cada palavra e em todos os documentos, passando por todo o \textit{corpus} várias vezes até convergir \cite{annalyn}.

@@ -6,6 +6,10 @@
 \input{fixos/informacoes}
 \input{fixos/setup}
 
+\indexsetup{level=\chapter}
+\makeindex[name=urls, title={Links Importantes}, columns=1]
+\newcommand{\lnk}[2]{#2\index[urls]{#1: \url{#2}}}
+
 \begin{document}
 
 \frenchspacing
@@ -36,7 +40,6 @@
 \bookmarksetup{startatroot}
 
 \postextual
-
 \bibliography{bibliografia}
 \input{editaveis/apendices}
 % \input{editaveis/anexos}

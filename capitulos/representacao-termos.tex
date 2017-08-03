@@ -14,12 +14,12 @@ Essa medida associa valores binários para os termos presentes nos documentos, o
 A medida \textit{term frequency} considera a quantidade de ocorrencias do termo \(t\) dentro do documento, ao contrário da medida mencionada anteriormente \cite{buckley1988}
 %
 \begin{equation}
-f_t=\frac{n_t}{N},
+f(t)=\frac{n_t}{N},
 \end{equation}
 %
 onde \(n_t\) é a quantidade de vezes que o termo \(t\) aparece dentro do documento e \(N\) a quantidade total de termos do documento.
 
-\subsubsection{\textit{Term Frequency - Inverse Document Frequency}}
+\subsubsection{\textit{Term Frequency - Inverse Document Frequency (TF-IDF)}}
 \label{ssub:baf-tfidf}
 
 Alguns termos comuns podem aparecer na maioria dos documentos sem fornecer informações úteis em uma tarefa de mineração de textos. Para diminuir a influência destes termos, é possível utilizar um fator de ponderação, para que os termos que aparecem na maioria dos documentos tenham valores numéricos menores do que aqueles que raramente aparecem \cite{pretext}. Segundo \citeonline{jones1972}, a especificidade de um termo pode ser quantificada por uma função inversa do número de documentos em que ele ocorre. Uma alternativa comum é utilizar uma função que varia entre \(0\) e \(log N_d\), onde \(N_d\) é o número total de documentos e \(d(t)\) a quantidade de documentos nos quais o termo \(t\) aparece ao menos uma vez:

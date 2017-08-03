@@ -17,7 +17,9 @@ Devido ao fato de uma linguagem ter tantas regras e exceções, é pouco provav�
 \subsubsection{\textit{Stop Words}}
 \label{ssub:stop_words}
 
-Palavras que possuem pouco ou nenhum valor semântico, como \textit{"e"}, \textit{"de"} e \textit{"seus"}, são conhecidas como \textit{Stop Words} e, por não agregarem valor à analise textual, podem ser removidas durante o pré-processamento \cite{rajaraman2011}. Essas palavras não são exclusividade de uma linguagem específica e geralmente representam a maioria dos termos de um texto. No caso da língua inglesa, por exemplo, palavras como \textit{"of"} e \textit{"the"} também não possuem nenhum valor para a análise. A lista de \textit{Stop Words} obviamente varia de acordo com a linguagem que está sendo analisada \cite{lopes2015}. O quadro abaixo mostra a lista parcial de \textit{Stop Words} consideradas nesse trabalho.
+Palavras que possuem pouco ou nenhum valor semântico, como \textit{"e"}, \textit{"de"} e \textit{"seus"}, são conhecidas como \textit{Stop Words} e, por não agregarem valor à analise textual, podem ser removidas durante o pré-processamento \cite{rajaraman2011}. Essas palavras não são exclusividade de uma linguagem específica e geralmente representam a maioria dos termos de um texto. No caso da língua inglesa, por exemplo, palavras como \textit{"of"} e \textit{"the"} também não possuem nenhum valor para a análise. A lista de \textit{Stop Words} obviamente varia de acordo com a linguagem que está sendo analisada \cite{lopes2015} e do contexto da análise. Neste trabalho, os textos analisados são provenientes de discursos parlamentares, o que implica na utilização de \textit{stop words} específicas para o contexto legislativo. Portanto, além das palavras mais comuns da língua portuguesa, também serão removidos da análise termos mais característicos de discurso legislativo, como ``vossa excelência'', ``senhor'' e ``pronunciamento'', por serem constantemente ditas pelos deputados em seus discursos e não agregarem muito valor à análise.
+
+O quadro abaixo mostra a lista parcial de \textit{Stop Words} consideradas nesse trabalho.
 
 \begin{table}[h]
 \centering
@@ -44,4 +46,4 @@ ela & elas & estas & nós & sem & essa & fosse & qual \\
 \label{exemplos-stop-words}
 \end{table}
 
-O algoritmo utiliza a versão \textit{stemizada} das \textit{stop words}. Mostramos as palavras originais por uma questão de clareza.
+O algoritmo utiliza a versão \textit{stemizada} das \textit{stop words}. As palavras ``ele'', ``ela'', ``eles'' e ``elas'', por exemplo, seriam todas tratadas como um único termo: ``el''. Mostramos as palavras originais por uma questão de clareza.

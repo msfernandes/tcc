@@ -1,0 +1,10 @@
+\clearpage
+\section{Aprendizado Semi-Supervisionado}
+
+Essa forma de aprendizado é útil quando quando existem apenas alguns exemplos já classificados e pode ser utilizado tanto em tarefas de classificação quanto em tarefas de \textit{clustering}. A ideia do aprendizado semi-supervisionado é utilizar esses exemplos previamente classificados para se obter informações sobre o problema e utilizá-las para auxiliar o processo de aprendizado a partir de exemplos não classificados \cite{bruce}.
+
+Existem várias estratégias para algoritmos de aprendizado semi-supervisionado, em geral, são utilizados modelos de aprendizado não-supervisionado com alterações, afim de se poder inserir informações a priori.
+
+Podemos tornar o algoritmo \textit{k-means} semi-supervisionado se fixarmos \textit{clusters} específicos para determinados termos previamente classificados, de forma que esse eles sempre pertençam aos \textit{clusters} pré-fixados. Dessa forma, a informação inserida influenciará diretamente na posição dos \textit{clusters}.
+
+No \textit{LDA}, também podemos fixar algumas linhas da tabela de mistura \(Q\). Dessa forma, podemos dizer que um texto pertence a um tópico específico.

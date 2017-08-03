@@ -5,9 +5,11 @@
 
 O desenvolvimento de novas ferramentas de interação entre governo e sociedade é fundamental para o avanço da democracia e a disponibilização de dados governamentais possibilita que novas aplicações surjam, trazendo novas formas de utilização e interpretação destes dados \cite{consegi2011}. O presente trabalho utiliza dados disponíveis publicamente pela Câmara dos Deputados Federal para analisar textos de discursos e proposições parlamentares utilizando técnicas de processamento de linguagem natural e aprendizagem de máquina. O objetivo da análise é determinar eixos temáticos para cada deputado e avaliar o alinhamento entre os temas dos discursos e das propostas encaminhadas.
 
+Com o objetivo de apresentar uma nova forma de visualizar os dados de discursos e proposições já disponibilizados pela Câmara dos Deputados, esse trabalho terá como produto um sistema \textit{web} onde será possível, através de gráficos interativos, conhecer o perfil temático dos deputados federais. Para chegar à esse perfil, foram utilizadas técnicas de processamento de linguagem natural e aprendizado de máquina, como classificadores \textit{naive Bayes}, por exemplo.
+
 No contexto governamental, os Dados Abertos\footnote{O conceito para Dado Aberto considerado neste trabalho é o definido pela \citeonline{open_knowledge}, que estabele que um dado (ou um conhecimento) é aberto quando estiver livre para uso, reuso e redistribuição. Ou seja, a informação deve estar disponível a todos, sem restrições de \textit{copyright}, patentes ou outros mecanismos de controle. Além disso, esses dados devem ser independentes de tecnologia, baseados em formatos padronizados e desvinculados das ferramentas que os originaram. Os dados devem permitir sua manipulação por máquinas e possuir metadados que permitam identificar sua natureza, origem e qualidade \cite{diniz2010}.} fortalecem três características indispensáveis para a democracia: transparência, participação e colaboração \cite{consegi2011}. Transparência tem o papel de informar a sociedade sobre as ações que estão sendo tomadas ou que serão tomadas pelo governo. Participação permite que os cidadãos auxiliem o poder público a elaborar políticas mais eficazes. Finalmente, a colaboração entre a sociedade, diferentes níveis de governo e a iniciativa privada permitem aprimorar a eficácia do Estado.
 
-De acordo com a Lei n\degree 12.527/2011, também conhecida como Lei de Acesso à Informação, qualquer cidadão, sem necessidade de justificativa, pode solicitar dados ou informações à qualquer órgão ou entidade pública dos poderes Executivo, Legislativo e Judiciário, além do Ministério Público, nas esferas Federal, Estadual e Municipal \cite{lei_acesso_informacao}. Para atender à lei mencionada anteriormente, a \citeonline{camara_dados_abertos} criou um portal que tem como objetivo disponibilizar dados brutos para a utilização em aplicações desenvolvidas pelos cidadãos e entidades da sociedade civil que permitam a percepção mais efetiva das atividades parlamentares, .
+De acordo com a Lei n\degree 12.527/2011, também conhecida como Lei de Acesso à Informação, qualquer cidadão, sem necessidade de justificativa, pode solicitar dados ou informações à qualquer órgão ou entidade pública dos poderes Executivo, Legislativo e Judiciário, além do Ministério Público, nas esferas Federal, Estadual e Municipal \cite{lei_acesso_informacao}. Para atender à lei mencionada anteriormente, a \citeonline{camara_dados_abertos} criou um portal que tem como objetivo disponibilizar dados brutos para a utilização em aplicações desenvolvidas pelos cidadãos e entidades da sociedade civil que permitam a percepção mais efetiva das atividades parlamentares.
 
 A publicação de dados pressupõe o uso de tecnologias que garantam que eles possam ser acessados e reutilizados por máquinas. Apesar de não garantir que os dados estarão disponíveis em um formato conveniente de uso imediato, possibilita o cruzamento de diferentes bases dados e a exibição destes de forma que possam ser melhor apresentados à sociedade \cite{diniz2010}.
 
@@ -20,17 +22,9 @@ O objetivo desse trabalho é utilizar técnicas de processamento de linguagem na
 \label{sub:contribuicoes_tecnologicas}
 
 \begin{itemize}
-    \item Implementar biblioteca Python para consumo de dados abertos governamentais, com foco nos dados abertos da Câmara dos deputados.
-    \item Implementar aplicação Django para utilização e persistência dos dados abertos governamentais, também com foco nos dados aberto da Câmara dos deputados.
+    \item Implementar biblioteca Python para consumo de dados abertos governamentais, com foco nos dados abertos da Câmara dos Deputados.
+    \item Implementar aplicação Django para utilização e persistência dos dados abertos governamentais, também com foco nos dados aberto da Câmara dos Deputados.
     \item Implementar sistema web de comparação temática entre discursos e proposições parlamentares, a ser detalhado no decorrer deste trabalho.
-\end{itemize}
-
-\subsection{Contribuições Científicas}
-\label{sub:contribuições_científicas}
-
-\begin{itemize}
-    \item Estudo teórico sobre Processamento de Linguagem Natural.
-    \item Estudo teórico sobre aprendizado de máquina aplicado à análise de textos.
 \end{itemize}
 
 \section{Metodologia}
@@ -38,15 +32,11 @@ O objetivo desse trabalho é utilizar técnicas de processamento de linguagem na
 
 Devido à natureza deste trabalho, nota-se que o modelo de pesquisa adequado deve possuir características tanto da pesquisa exploratória quanto da pesquisa experimental. Outro método de pesquisa que será utilizado é a pesquisa-ação, onde existirão ciclos de coleta e análise de dados. A cada ciclo, a análise dos dados do ciclo anterior servirão de insumo para tomadas de decisão no desenvolvimento do projeto.
 
-Durante a fase de desenvolvimento do sistema, pretende-se utilizar uma abordagem de ágil, com a aplicação de algumas práticas adaptadas do \textit{framework} Scrum:
+O presente trabalho possui o apoio do Laboratório Hacker da Câmara dos Deputados e por isso foi desenvolvido em colaboração com membros de sua equipe de desenvolvimento. Para facilitar a interação com os outros envolvidos no projeto, foi criada uma organização no \textit{GitHub}\footnote{\lnk{- Organização do Tenho Dito no \textit{GitHub}}{https://github.com/tenhodito}}, onde foram armazenados os códigos produzidos nesse trabalho. Além disso, a aplicação será hopedada na infraestrutura do Laboratório Hacker.
 
-\begin{itemize}
-    \item Nas retrospectivas de \textit{sprint}, serão realizadas avaliações, para identificar os pontos fortes e fracos da \textit{sprint} que terminou, bem como propor possíveis ações que poderão ser tomadas para mitigar os pontos fracos, na próxima \textit{sprint}.
-    \item \textit{Daily meetings}, onde serão feitos comentários sobre o que foi realizado no dia e dúvidas poderão ser reportadas. Acontecerão diária e remotamente, para o melhor acompanhamento do orientador.
-    \item Será definido um \textit{backlog} de produto e um para cada \textit{sprint}.
-\end{itemize}
+Por motivos de força maior, o presente trabalho não foi completado até a data limite para sua entrega e a versão atualizada do texto poderá ser obtida no repositório do autor\footnote{\lnk{- Texto atualizado}{https://github.com/msfernandes/tcc}}, bem como a versão final do código poderá ser acessado no repositório do Tenho Dito\footnote{\lnk{- Repositório do Tenho Dito}{https://github.com/tenhodito/tenhodito}}.
 
 \section{Organização do Trabalho}
 \label{sec:organização_do_trabalho}
 
-Este trabalho está divido em quatro capítulos. No capítulo 2 são apresentadas as revisões bibliográficas realizadas para pré-processamento de textos e aprendizado de máquina aplicado a processamento de linguagem natural. No capítulo 3 são abordados os trabalhos relacionados, ferramentas utilizadas e o planejamento das atividades. O capítulo 3 apresenta os resultados alcançados com essa pesquisa. Por fim, o capítulo 5 possui as considerações finais, perspectivas futuras e um cronograma para a continuação deste trabalho.
+Esse trabalho está organizado em 5 capítulos: Introdução, Metodologia, Processamento de Linguagem Natural, Resultados Obtidos e Considreações Finais. O presente capítulo faz uma breve introdução ao tema desse trabalho, bem como aos objetivos que pretendem ser alcançados. O capítulo 2, Metodologia, descreve a forma como foi realizado esse trabalho. O capítulo 3 contém todas o referencial teórico necessário para a realização desse trabalho. O capítulo 4 expõe os objetivos alcançado ao final do trabalho. O capítulo 5 possui a conclusão a que se chega com o presente trabalho e as perspectivas futuras.

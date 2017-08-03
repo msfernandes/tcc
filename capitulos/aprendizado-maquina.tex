@@ -1,18 +1,21 @@
 \clearpage
-\section{Aprendizado de Máquina}
+\chapter{Aprendizado de Máquina}
 
-Como subárea da inteligência artificial, o aprendizado de máquina tem como objetivo criar técnicas computacionais e sistemas que automaticamente adquirem conhecimento. Existem diversos algoritmos de aprendizado de máquina, utilizados para resolver problemas específicos. É importante, portanto, compreender suas limitações \cite{rezende2003}.
+O aprendizado de máquina tem como objetivo criar técnicas computacionais e sistemas que automaticamente adquirem conhecimento. Existem diversos algoritmos de aprendizado de máquina, utilizados para resolver problemas específicos. É importante, portanto, compreender suas limitações \cite{rezende2003}.
 
 As tarefas de aprendizado de máquina podem ser classificadas em três categorias \cite{russel2003}:
 
 \begin{itemize}
-    \item \textbf{Apredizagem supervisionada:} é fornecido ao algoritmo um conjunto de entradas e suas respectivas saídas, com o objetivo de aprender uma regra geral que mapeia as entradas às saídas.
-    \item \textbf{Aprendizagem não-supervisionada:} nenhum tipo de entrada é fornecido, com o objetivo do próprio algoritmo identificar os padrões do conjunto de dados.
-    \item \textbf{Aprendizagem por reforço:} o algoritmo interage com o ambiente dinâmico afim de concluir determinados objetivos.
+    \item \textbf{Apredizado supervisionado:} é fornecido ao algoritmo um conjunto de entradas e suas respectivas saídas, com o objetivo de aprender uma regra geral que mapeia as entradas às saídas.
+    \item \textbf{Aprendizado não-supervisionado:} somente um conjunto de entrada é fornecido, com o objetivo do próprio algoritmo identificar os padrões do conjunto de dados.
+    \item \textbf{Aprendizado por estímulo:} o algoritmo interage com o ambiente dinâmico afim de concluir determinados objetivos.
+    \item \textbf{Aprendizado semi-supervisionado:} utiliza um conjunto de treinamento que inclui alguns elementos pré-classificados junto com outros elementos não classificados. O objetivo é obter uma performance que se aproxime dos supervisionados com um custo de classificação que se aproxime dos não-supervisionados.
 \end{itemize}
 
-Este trabalho utiliza alguns algoritmos supervisionados e não-supervisionados, mas não adota nenhuma técnica de aprendizagem por reforço.
+Este trabalho utiliza alguns algoritmos supervisionados e não-supervisionados. Apesar de não utilizar algorítmos de específicos de aprendizado semi-supervisionado, serão utilizados termos previa e manualmente rotulados.
 
 \input{capitulos/aprendizado-supervisionado.tex}
 \input{capitulos/aprendizado-nao-supervisionado.tex}
+\input{capitulos/aprendizado-semi-supervisionado.tex}
+\input{capitulos/distancia-entre-pontos.tex}
 \input{capitulos/validacao-cruzada.tex}

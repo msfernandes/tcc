@@ -1,28 +1,22 @@
 \section{Ferramentas e Tecnologias}
 \label{ferramentas}
 
-Para auxiliar no desenvolvimento, foram escolhidas as seguintes tecnologias:
-
 \subsection{Linguagem de Programação}
 
-Devido ao tamanho da comunidade, grande utilização na área de aprendizado de máquina, possibilidade de desenvolvimento \textit{web} e conhecimento prévio do autor e orientador, decidiu-se utilizar a linguagem \textit{Python}\footnote{https://www.python.org} para o desenvolvimento das aplicações do presente trabalho.
-
+Devido ao tamanho da comunidade, grande utilização na área de aprendizado de máquina, possibilidade de desenvolvimento \textit{web} e conhecimento prévio do autor e orientador, decidiu-se utilizar a linguagem \textit{Python}\footnote{\lnk{Python}{https://www.python.org}} para o desenvolvimento das aplicações do presente trabalho.
 
 \subsection{\textit{Frameworks} e Bibliotecas}
 
-O desenvolvimento da aplicação \textit{web}, utilizará o \textit{framework} \textit{Django}\footnote{https://www.djangoproject.com}, o que implica na uso da arquitetura \textit{MVT} (\textit{Model View Template}). Similar ao \textit{MVC}, no \textit{MVT} o ciclo começa por uma ação do usuário, a View notifica a Model, para que seu estado seja atualizado, a Model efetua as modificações necessárias e alerta as suas dependências que foi alterada, assim a Template consulta o novo estado da Model, e atualiza a sua visualização.
+O desenvolvimento da aplicação \textit{web}, utilizará o \textit{framework} \textit{Django}\footnote{\lnk{Framework Django}{https://www.djangoproject.com}}, o que implica no uso da arquitetura \textit{MVT} (\textit{Model View Template}). Similar ao \textit{MVC}, no \textit{MVT} o ciclo começa por uma ação do usuário, a View notifica a Model, para que seu estado seja atualizado, a Model efetua as modificações necessárias e alerta as suas dependências que foi alterada, assim a Template consulta o novo estado da Model, e atualiza a sua visualização.
 
-Para trabalhar com o processamento de linguagem natural e aprendizado de máquina aplicado, serão utilizadas as bibliotecas \textit{plagiarism}\footnote{https://github.com/fabiommendes/plagiarism} e \textit{texblob}\footnote{https://textblob.readthedocs.io}, que encapsula a biblioteca \textit{NLTK}\footnote{http://www.nltk.org}. Alguns cálculos são implementados utilizando o \textit{stack} científico do \textit{Python}, que inclui o \textit{numpy}\footnote{http://www.numpy.org}, \textit{scipy}\footnote{https://www.scipy.org}, \textit{matplotlib}\footnote{http://matplotlib.org} e \textit{sklearn}\footnote{http://scikit-learn.org}.
+Além disso, utilizou-se a biblioteca \textit{Javascript} D3.js\footnote{\lnk{Biblioteca D3.js}{https://d3js.org/}} para auxiliar na visualização de dados. Por possuir características que podem facilitar o desenvolvimento, como \textit{default parameters}, \textit{arrow functions} e Classes, o código \textit{Javascript} desse trabalho será escrito utilizando a versão \textit{ES6}\footnote{http://es6-features.org/} (ou \textit{ECMAScript 6}) e para garantir melhor suporte aos navegadores mais antigos, será utilizado também o \textit{Babel}\footnote{https://babeljs.io/}, um \textit{transpiler} que transforma o código \textit{ES 6} em código \textit{ES 5}, suportado pela maioria dos navegadores atuais. Os estilos serão todos escritos utilizando a sintaxe \textit{SCSS} e as ferramentas \textit{node-sass} e \textit{postcss} para transformar o código \textit{SCSS} em \textit{CSS}, além de adicionar estilos de suporte \textit{cross-browser} automaticamente.
 
+Esse trabalho não está focado na implementação de algoritmos de processamento de linguagem natural e aprendizado de máquina, mas sim na integração de algoritmos implementados por bibliotecas de terceiros. Serão utilizadas as bibliotecas \textit{plagiarism}\footnote{\lnk{Plagiarism}{https://github.com/fabiommendes/plagiarism}}, \textit{gensim}\footnote{https://radimrehurek.com/gensim/} e \textit{texblob}\footnote{\lnk{Texblob}{https://textblob.readthedocs.io}}, que encapsula a biblioteca \textit{NLTK}\footnote{http://www.nltk.org}, para tarefas de processamento de linguagem natural e aprendizado de máquina. Alguns cálculos são implementados utilizando o \textit{stack} científico do \textit{Python}, que inclui o \textit{numpy}\footnote{\lnk{NumPy}{http://www.numpy.org}}, \textit{scipy}\footnote{https://www.scipy.org}, \textit{matplotlib}\footnote{http://matplotlib.org} e \textit{sklearn}\footnote{http://scikit-learn.org}.
 
 \subsection{Gerenciador de Repositórios de Código}
 
-O gerenciamento de versões dos códigos das aplicações desenvolvidas utiliza o \textit{Git}\footnote{https://git-scm.com} e o serviço de \textit{web hosting} compartilhado \textit{GitHub}\footnote{https://github.com}. Além disso, os pacotes \textit{Python} são enviados para o \textit{PyPI}\footnote{https://pypi.python.org/pypi}, sendo facilmente instaláveis através do comando \textit{pip}\footnote{https://pip.pypa.io}.
+O gerenciamento de versões dos códigos das aplicações desenvolvidas utiliza o \textit{Git}\footnote{https://git-scm.com} e o serviço de \textit{web hosting} compartilhado \textit{GitHub}\footnote{https://github.com}. Além disso, os pacotes \textit{Python} são enviados para o \textit{PyPI}\footnote{https://pypi.python.org/pypi}, sendo facilmente instaláveis por terceiros através do comando \textit{pip}\footnote{https://pip.pypa.io}.
 
-
-\subsection{Documentação do Projeto}
-
-A documentação do projeto, realizada utilizando a biblioteca \textit{Python sphinx}\footnote{http://www.sphinx-doc.org}, que possibilita a extração de documentação por meio de \textit{docstrings} no código e arquivos \textit{.rst}, e o próprio \textit{GitHub}, através de \textit{readmes} no repositório.
 
 \subsection{Gerenciamento de Tarefas}
 
