@@ -12,7 +12,7 @@ As principais vantagens do aprendizado Bayesiano são o fato de se poder embutir
 
 Uma forma de mitigar a dificuldade de cálculo está em considerar modelos probabilísticos simplificados que permitem um tratamento analítico para as probabilidades calculadas \cite{pardo2002}.
 
-O classificador Bayesiano ingênuo (ou \textit{naive Bayes}, em inglês), admite que os atributos do elemento a ser classificado são independentes entre si, dada a categoria da classificação \cite{pellucci2011}. Segundo \citeonline{oguri2007}, existem dois tipos principais de classificadores bayesianos ingênuos utilizados em processamento de linguagem natural: o modelo binário e o modelo multinomial. Cada modelo está relacionado a um tipo de BOW. Também é possível tratar a BOW TF-IDF como um modelo Gaussiano adequado para variáveis contínuas \cite{hand2001}.
+O classificador Bayesiano ingênuo (ou \textit{naive Bayes}, em inglês), admite que os atributos do elemento a ser classificado são independentes entre si, dada a categoria da classificação \cite{pellucci2011}. Segundo \citeonline{oguri2007}, existem dois tipos principais de classificadores Bayesianos ingênuos utilizados em processamento de linguagem natural: o modelo binário e o modelo multinomial. Cada modelo está relacionado a um tipo de BOW. Também é possível tratar a BOW TF-IDF como um modelo Gaussiano adequado para variáveis contínuas \cite{hand2001}.
 
 \paragraph{Modelo Binário}
 O modelo binário representa um documento como um vetor binário, ou seja, o valor 0 em uma posição \(k\) (onde \(k\) representa uma palavra do documento) representa a não ocorrência do termo e o valor 1 representa ao menos uma ocorrência desse termo. Este modelo simplesmente especifica a probabilidade de ocorrência de cada termo.

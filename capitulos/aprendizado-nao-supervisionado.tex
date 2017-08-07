@@ -30,38 +30,38 @@ A clusterização é uma técnica da mineração de dados que consiste, justamen
 
 Não existe uma técnica de clusterização universal capaz de revelar toda a variedade de estruturas que podem estar presentes em conjuntos de dados multidimensionais. Diferentes algoritmos dependem implicitamente de certas hipóteses a respeito da forma dos clusters, da definição da medida de similaridade e dos critérios de agrupamento \cite{estivill2002}.
 
-\subsubsection{Algorítmo \textit{k-means}}
+\subsubsection{Algoritmo \textit{k-means}}
 \label{sub:k_means}
 
-O algorítmo de clusterização \textit{k-means}, proposto por \citeonline{lloyd1957}, tem o objetivo de dividir \(N\) elementos em \(k\) grupos, onde cada elemento pertence ao \textit{cluster} mais próximo. O valor de \(k\) deve ser informado a priori, sendo menor que a quantidade de elementos.
+O algoritmo de clusterização \textit{k-means}, proposto por \citeonline{lloyd1957}, tem o objetivo de dividir \(N\) elementos em \(k\) grupos, onde cada elemento pertence ao \textit{cluster} mais próximo. O valor de \(k\) deve ser informado a priori, sendo menor que a quantidade de elementos.
 
 Os passos do algoritmo são:
 
 \begin{enumerate}
-  \item \textbf{Gerar centróides:} neste passo os \(k\) centróides recebem valores iniciais. O valor inicial dos centróides podem ser definidos randomicamente, através de uma Gaussiana (com média e variância estimados a partir do conjunto de elementos) ou escolhendo aleatoriamente \(k\) dos \(N\) elementos como centróides iniciais ou definindo-os como centróides de \(k\) grupos escolhidos aleatoriamente a partir dos dados iniciais.
+  \item \textbf{Gerar centroides:} neste passo os \(k\) centroides recebem valores iniciais. O valor inicial dos centroides podem ser definidos randomicamente, através de uma Gaussiana (com média e variância estimados a partir do conjunto de elementos) ou escolhendo aleatoriamente \(k\) dos \(N\) elementos como centroides iniciais ou definindo-os como centroides de \(k\) grupos escolhidos aleatoriamente a partir dos dados iniciais.
   \begin{figure}[h]
     \centering
     \includegraphics[scale=0.6]{figuras/kmeans-1.eps}
-    \caption{k centróides (coloridos) recebem valores iniciais.}
+    \caption{k centroides (coloridos) recebem valores iniciais.}
   \end{figure}
-  \item \textbf{Calcular distâncias:} aqui são calculadas as distâncias entre cada ponto e cada centróide. É a parte com maior peso computacional do algorítmo, já que o calculo é realizado para cada ponto.
-  \item \textbf{Classificar os pontos:} cada ponto deve ser classificado de acordo com a distância entre ele e o centróide de cada \textit{cluster}. O ponto pertencerá ao \textit{cluster} cujo centróide está mais próximo. O algorítmo converge quando, em uma iteração, nenhum ponto mudar de \textit{cluster}.
+  \item \textbf{Calcular distâncias:} aqui são calculadas as distâncias entre cada ponto e cada centroide. É a parte com maior peso computacional do algoritmo, já que o calculo é realizado para cada ponto.
+  \item \textbf{Classificar os pontos:} cada ponto deve ser classificado de acordo com a distância entre ele e o centroide de cada \textit{cluster}. O ponto pertencerá ao \textit{cluster} cujo centroide está mais próximo. O algoritmo converge quando, em uma iteração, nenhum ponto mudar de \textit{cluster}.
   \begin{figure}[h]
     \centering
     \includegraphics[scale=0.6]{figuras/kmeans-2.eps}
-    \caption{Cálculo das distâncias entre os pontos e os centróides.}
+    \caption{Cálculo das distâncias entre os pontos e os centroides.}
   \end{figure}
-  \item \textbf{Calcular novos centróides:} para cada \textit{cluster}, um novo centróide é definido como a média de todos os pontos.
+  \item \textbf{Calcular novos centroides:} para cada \textit{cluster}, um novo centroide é definido como a média de todos os pontos.
   \begin{figure}[h]
     \centering
     \includegraphics[scale=0.6]{figuras/kmeans-3.eps}
-    \caption{Novos centróides definidos pela media dos elementos do \textit{cluster}.}
+    \caption{Novos centroides definidos pela media dos elementos do \textit{cluster}.}
   \end{figure}
-  \item \textbf{Repetir até convergir:} retorna ao passo 2. Como o resultado do algoritmo depende da escolha dos centróides iniciais, a convergência não é garantida ou ele converge para uma solução sub-ótima. Por isso, normalmente o algoritmo é executado várias vezes.
+  \item \textbf{Repetir até convergir:} retorna ao passo 2. Como o resultado do algoritmo depende da escolha dos centroides iniciais, a convergência não é garantida ou ele converge para uma solução sub-ótima. Por isso, normalmente o algoritmo é executado várias vezes.
   \begin{figure}[h]
     \centering
     \includegraphics[scale=0.6]{figuras/kmeans-4.eps}
-    \caption{O algorítmo converge quando nenhum ponto muda de \textit{cluster}.}
+    \caption{O algoritmo converge quando nenhum ponto muda de \textit{cluster}.}
   \end{figure}
 \end{enumerate}
 
@@ -70,7 +70,7 @@ Mudanças de escala ou de unidade de medidas para determinadas coordenadas dos e
 
 \subsubsection{\textit{Latent Dirichlet Allocation - LDA}}
 
-O \textit{LDA} foi proposto por \citeonline{pritchard} em uma aplicação inicial na biologia. Em seu modelo, \citeonline{pritchard} utilizam dados de genótipos multilocus para inferir estruturas populacionais e associar cada indivíduos a uma mistura de populações parentais. Dessa forma, também conseguem estudar zonas híbridas entre as populações e identificar indivíduos migrantes e misturados. A aplicação desse modelo no processamento de linguagem natural foi proposta independentemente por \citeonline{blei}, onde os documentos são tratados como os indivíduos e as populações passam a ser tópicos.
+O \textit{LDA} foi proposto por \citeonline{pritchard} em uma aplicação inicial na biologia. Em seu modelo, \citeonline{pritchard} utilizam dados de genótipos multi locus para inferir estruturas populacionais e associar cada indivíduos a uma mistura de populações parentais. Dessa forma, também conseguem estudar zonas híbridas entre as populações e identificar indivíduos migrantes e misturados. A aplicação desse modelo no processamento de linguagem natural foi proposta independentemente por \citeonline{blei}, onde os documentos são tratados como os indivíduos e as populações passam a ser tópicos.
 
 No contexto do processamento de linguagem natural, um documento, ou palavra, pode ser representado por uma mistura de vários tópicos, o que permite uma melhor desambiguação dos termos e uma definição de tópicos mais precisa \cite{girolami}. Usamos como exemplo as seguintes frases:
 

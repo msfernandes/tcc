@@ -18,7 +18,7 @@ bag_of_words = {
 
 É fácil ver que esta representação torna a ordem das palavras irrelevante. As frases ``e comprei fui padaria pão à'' e ``à pão comprei padaria e fui'' também possuem as mesmas representações.
 
-O texto também pode ser representado na forma de um vetor. Nesse caso, cada índice do vetor representa uma palavra e cada coordenada corresponde à frequência da mesma. Quando mais de um texto é analisado, os vetores que os representam devem possuir a mesma relação ``índice-palavra''. Por isso, as palavras que compõe cada texto são ordenadas alfbéticamente antes da formação do vetores.
+O texto também pode ser representado na forma de um vetor. Nesse caso, cada índice do vetor representa uma palavra e cada coordenada corresponde à frequência da mesma. Quando mais de um texto é analisado, os vetores que os representam devem possuir a mesma relação ``índice-palavra''. Por isso, as palavras que compõe cada texto são ordenadas alfabeticamente antes da formação do vetores.
 
 A linguagem de programação \textit{Python} possui, nativamente, ferramentas que facilitam a contagem de elementos de um dicionário. O módulo \texttt{collections}\footnote{https://docs.python.org/3/library/collections.html} possui a classe \texttt{Counter}, que é uma subclasse de \texttt{dict} e representa um mapa entre elementos e números. Isso torna o \texttt{Counter} uma representação ideal para o modelo \textit{bag-of-words}, já que ele, naturalmente, conta a quantidade de vezes que um termo aparece dentro de uma coleção (uma lista, tupla ou dicionário, por exemplo).
 
