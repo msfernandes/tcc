@@ -41,11 +41,11 @@ Tendo em vista que o resultado das classificações utilizando o modelo descrito
 
 \paragraph{Dados Utilizados na Análise}
 
-Em primeiro lugar, passamos a utilizar uma base de palavras pré-classificadas maior: o \textit{thesaurus} da Câmara dos Deputados. Esse conjunto de palavras foi utilizado para treinamento do classificador, o que melhorou, mas não o suficiente, o resultado da classificação temática.
+Em primeiro lugar, passamos a utilizar uma base de palavras pré-classificadas maior: o \textit{thesaurus} da Câmara dos Deputados, que estará deisponível no repositório do Tenho Dito. Esse conjunto de palavras foi utilizado para treinamento do classificador, o que melhorou, mas não o suficiente, o resultado da classificação temática.
 
 Também deixamos de utilizar o texto completo para a análise e passamos a utilizar apenas o sumário, que é basicamente um resumo do discurso/proposição estruturado de forma simples, onde cada sentença corresponde a um tópico abordado pelo deputado (geralmente). Temos, por exemplo, o sumário de um discurso proferido pelo deputado Alberto Fraga, no dia 10/07/2017: \textit{``Incompetência administrativa do Governador Rodrigo Rollemberg. Protesto contra a derrubada de construções na orla do Lago Paranoá, determinada pelo Governo de Brasília. Repúdio à ação ajuizada contra o orador, em face de críticas à administração do Distrito Federal.''}. Analisando o sumário, podemos ver que \textit{``Incompetência administrativa do Governador Rodrigo Rollemberg''} aborda um tema, \textit{``Protesto contra a derrubada de construções na orla do Lago Paranoá, determinada pelo Governo de Brasília''} aborda outro e \textit{``Repúdio à ação ajuizada contra o orador, em face de críticas à administração do Distrito Federal.''} outro. Essa característica permitiu o descarte do primeiro classificador (de ``contúdo útil/não-útil'') e melhorar um pouco a classificação temática, já que as sentenças obtidas trazem um conteúdo relevante, são menores e abrangem menos temas.
 
-Entre os dados de proposições disponíveis no \textit{webservice} de dados abertos da Câmara dos Deputados não encontramos algo semelhante ao sumário dos discursos, apenas a ementa da proposição, mas que na maioria das vezes contém algo muito técnico, sendo necessário o conhecimento mais profundo das leis, como por exemplo: \textit{``Revoga os artigos 165, 166 e 204 do Decreto-Lei nº 1.001, de 21 de outubro de 1969.''}. Buscando utilizar os mesmos dados, tanto para dicursos quanto para proposições, optou-se pela utilização da indexação realizada pela Câmara dos Deputados, já que a mesma está presente em todos os dicursos realizados no Pequeno Expediente e em todas os Projetos de Lei. Somente para exemplificar, o Projeto de Lei que possui a ementa citada anteriormente, possui a seguinte indexação: \textit{``Revogação, dispositivo legal, Decreto-Lei, Código Penal Militar, promoção, reunião, publicação, crítica, indevido, exercício, comércio, militar da ativa''}, o que permite o entendimento do que realmente a proposição aborda.
+Entre os dados de proposições disponíveis no \textit{webservice} de dados abertos da Câmara dos Deputados não encontramos algo semelhante ao sumário dos discursos, apenas a ementa da proposição, mas que na maioria das vezes contém algo muito técnico, sendo necessário o conhecimento mais profundo das leis, como por exemplo: \textit{``Revoga os artigos 165, 166 e 204 do Decreto-Lei nº 1.001, de 21 de outubro de 1969.''}. Buscando utilizar os mesmos dados, tanto para dicursos quanto para proposições, optou-se pela utilização da indexação realizada pela Câmara dos Deputados, já que a mesma está presente em todos os dicursos realizados no Pequeno Expediente e em todos os Projetos de Lei. Somente para exemplificar, o Projeto de Lei que possui a ementa citada anteriormente, possui a seguinte indexação: \textit{``Revogação, dispositivo legal, Decreto-Lei, Código Penal Militar, promoção, reunião, publicação, crítica, indevido, exercício, comércio, militar da ativa''}, o que permite o entendimento do que realmente a proposição aborda.
 
 \paragraph{Modelos Utilizados}
 
@@ -55,17 +55,19 @@ O \textit{LDA} é, naturalmente, não-supervisionado. Entretanto, a implementaç
 
 Para aplicar o \textit{LDA}, instanciamos um objeto da classe \textit{LdaModel} passando como parâmetros o \textit{corpus} de treinamento utilizado (\textit{thesaurus}), a quantidade de tópicos a serem encontrados e o \textit{eta}, que será utilizado pelo algoritmo para definir probabilidades a priori. O \textit{eta} é uma matriz \(K \times n\), onde \(K\) é o número de tópicos e \(n\) o número de termos. Com essa matriz, podemos definir valores específicos para determinadas palavras em relação aos tópicos, sendo que o valor padrão para cada palavra é de \(\frac{1}{K}\). Dessa forma, os termos já classificados pelo \textit{thesaurus} foram inseridos no \textit{LDA} através do \textit{eta}, onde a valor dos termos em seus tópicos passam ser definidos de acordo com a seguinte equação:
 \begin{align}
-  \frac{1}{K}+\left(\frac{(K-1)}{K} \times 0.99\right)^6,
+  \frac{1}{K}+\frac{(K-1)}{K} \cdot F,
 \end{align}
-onde \(K\) é a quantidade de tópicos.
+onde \(K\) é a quantidade de tópicos e \(F\) é \(0.99^6\). O valor de \(F\) foi escolhido para ser o menor número que classifica todos os conhecidos corretamente, e a ideia do expoente foi somente para ajustar esse peso. Dessa forma, o \textit{training set} é classificado corretamente e o tópico correto sempre com mais de 50\%.
 
-Para analisar a qualidade dos resultados obtidos com o \textit{LDA}, utilizamos o método \textit{PCA} (\textit{Principal Component Analysis}), que tenta capturar as componentes principais de um conjunto de dados e projeta em um espaço de dimensão mais baixa, para mostrar os dados em duas dimensões. O \textit{LDA} funciona bem quando o \textit{PCA} consegue dividir o \textit{dataset} em \textit{clusters}. Algumas vezes o \textit{PCA} só mostra os \textit{clusters} em dimensões maiores que três, porém analisando os nossos dados, mesmo em duas dimensões, conseguimos visualizar apenas um \textit{cluster} separado e todo o resto junto, como mostra a figura a seguir.
+Para visualizar os dados obtidos com o \textit{LDA}, utilizamos o método \textit{PCA} (\textit{Principal Component Analysis}), que tenta capturar as componentes principais de um conjunto de dados e projeta em um espaço de dimensão mais baixa, para mostrar os dados em duas dimensões. O \textit{LDA} funciona bem quando o \textit{PCA} consegue dividir o \textit{dataset} em \textit{clusters} relativamente bem definidos. No gráfico abaixo, os pontos marcados correspondem a um \textit{cluster} conhecido específico.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.6]{figuras/pca.eps}
+    \includegraphics[scale=0.5]{figuras/pca.eps}
     \caption{Análise dos dados do \textit{LDA} utilizando \textit{PCA}}
 \end{figure}
+
+Os \textit{clusters} podem estar em mais de duas dimensões, porém analisando os nossos dados, mesmo em duas dimensões, conseguimos visualizar  apenas um \textit{cluster} separado e todo o resto junto, mostrando que a classificação claramente não está correta.
 
 Tendo em vista o resultado acima, voltamos a utilizar o modelo \textit{naive Bayes} para realizar a classificação dos discursos e proposições.
 
@@ -74,6 +76,8 @@ Tendo em vista o resultado acima, voltamos a utilizar o modelo \textit{naive Bay
 Como dito nos tópicos anteriores, serão utilizados os dados do \textit{thesaurus} da Câmara dos Deputados para o treinamento, a indexação dos discursos e proposições para e o classificador \textit{naive Bayes} para a análise.
 
 Primeiramente, assim como na primeira parte do trabalho, é instanciado um objeto da classe \textit{NaiveBayesClassifier}, implementado pela biblioteca \textit{textblob}, passando como treinamento inicial o conjunto de termos já classificados do \textit{thesaurus}. Com o classificador treinado, passamos por cada discurso e em cada um deles obtemos a lista de termos usados em sua indexação. Cada termo é analisado individualmente e apenas aqueles que forem classificados com a probabilidade maior que 60\% são utilizados, o restante é descartado. Após classificar todos os termos de indexação de um discurso, calculamos a porcentagem de cada tema e atribuímos ao discurso. Por exemplo, suponha um discurso possui 13 termos na indexação e apenas 8 deles foram classificados com probabilidade maior que 60\%. Se 4 desses foram classificados como ``Segurança'', 3 como ``Direitos Humanos'' e 1 como ``Saúde'', então o discurso será classificado como sendo 50\% sobre segurança, 37,5\% direitos humanos e 12,5\% saúde. Além disso, definimos como tema principal do discurso aquele com maior porcentagem.
+
+Vale enfatizar que as porcentagens mostradas pelo \textit{naive Bayes} são interpretadas de forma diferente que o \textit{LDA}. Enquanto no segundo trata-se de uma mistura de temas, no \textit{naive Bayes} correspondem à chance de um texto pertencer exclusivamente a cada tópico.
 
 Para as proposições, os mesmos procedimentos são realizados, bem como a utilização do mesmo classificador já treinado.
 

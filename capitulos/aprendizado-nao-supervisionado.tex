@@ -117,11 +117,8 @@ Para se obter o conteúdo de cada tópico, basta observar as colunas de \(P\), o
 
 Para chegar à essa conclusão, o \textit{LDA} segue três passos:
 
-\paragraph{Quantidade de Tópicos}
-Assim como no \textit{k-means}, o primeiro passo é definir a quantidade de tópicos que serão obtidos ao final da análise. Esse número pode ser obtido através de uma análise prévia dos dados ou simplesmente por uma escolha aleatória.
-
-\paragraph{Inicializar as tabelas \(P\) e\(Q\)}
-É definida uma distribuição de tópico inicial para cada documento, que será atualizado no passo seguinte. A escolha desses tópicos se dá de forma semi-aleatória, de acordo com a distribuição de \textit{Dirichlet}, ou seja, valores aleatórios entre 0 e 1 com a restrição de que a soma deles deve ser 1. As probabilidades \(P\) podem ser definidas de forma uniforme para todos os termos: \(P=0.5\).
-
-\paragraph{Analisar e Atualizar os Tópicos}
-Para cada palavra, em todos os documentos, a definição do tópico é atualizada de acordo com dois critérios: quão essa palavra é predominante  entre os tópicos e quão predominante são os tópicos entre as palavras do documento. Em outras palavras, as probabilidades são recalculadas fixando os valores de \(P\) para obter os novos valores de \(Q\) e, em seguida, fixa-se os valores de \(Q\) para recalcular as probabilidades de \(P\). Dependendo do algoritmo esse processo pode ser repetido para cada palavra e em todos os documentos, passando por todo o \textit{corpus} várias vezes até convergir \cite{annalyn}.
+\begin{itemize}
+  \item \textbf{Quantidade de tópicos:} assim como no \textit{k-means}, o primeiro passo é definir a quantidade de tópicos que serão obtidos ao final da análise. Esse número pode ser obtido através de uma análise prévia dos dados ou simplesmente por uma escolha aleatória.
+  \item \textbf{Inicializar as tabelas \(P\) e \(Q\):} É definida uma distribuição de tópico inicial para cada documento, que será atualizado no passo seguinte. A escolha desses tópicos se dá de forma semi-aleatória, de acordo com a distribuição de \textit{Dirichlet}, ou seja, valores aleatórios entre 0 e 1 com a restrição de que a soma deles deve ser 1. As probabilidades \(P\) podem ser definidas de forma uniforme para todos os termos: \(P=0.5\).
+  \item \textbf{Analisar e atualizar os tópicos:} Para cada palavra, em todos os documentos, a definição do tópico é atualizada de acordo com dois critérios: o quanto essa palavra é predominante  entre os tópicos e quão predominante são os tópicos entre as palavras do documento. Em outras palavras, as probabilidades são recalculadas fixando os valores de \(P\) para obter os novos valores de \(Q\) e, em seguida, fixa-se os valores de \(Q\) para recalcular as probabilidades de \(P\). Dependendo do algoritmo esse processo pode ser repetido para cada palavra e em todos os documentos, passando por todo o \textit{corpus} várias vezes até convergir \cite{annalyn}.
+\end{itemize}
